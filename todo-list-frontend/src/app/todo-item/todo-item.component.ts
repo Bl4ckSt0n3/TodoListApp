@@ -5,11 +5,12 @@ import {Todo} from "../todo.service";
   selector: 'app-todo-item',
   template: `
       <div class="task-indicator">
-        {{ item.task }}
+        {{ item.task }} 
       </div>
       <div class="priority-indicator" [style.background-color]="color">
         {{ item.priority }}
       </div>
+
   `,
   styleUrls: ['todo-item.component.scss']
 })

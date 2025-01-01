@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
-@EnableJpaRepositories
+@SpringBootApplication(scanBasePackages = "com.todo")
+@EnableJpaRepositories("com.todo.repository")
 @EntityScan
 public class TodoApplication {
 

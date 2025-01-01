@@ -1,0 +1,96 @@
+<div class="title">
+    <h2>
+      A list of TODOs
+    </h2>
+</div>
+<div class="list">
+    <label for="search">Search...</label>
+    <input 
+        id="search" 
+        type="text" 
+        (input)="onSearchInput($event)"
+    >
+    <app-progress-bar *ngIf="!(todos$ | async)?.length"></app-progress-bar>
+
+    <div class="todo-list">
+        <ng-container *ngIf="filteredData.length; else noDataFound">
+            <app-todo-item *ngFor="let todo of filteredData" [item]="todo" (click)="removeTodoItem(todo)"></app-todo-item>
+        </ng-container>
+    </div>
+
+    <div>
+        <span class="note">
+            <p>Click on the item to remove it.</p>
+        </span>
+    </div>
+    <div *ngIf="showLoader" class="loader"></div>
+
+    <ng-template #noDataFound>
+        <p>No data found.</p>
+    </ng-template>
+</div>
+
+<hr>
+
+<div class="api-title">
+    <h2>Api List</h2>
+</div>
+
+
+<div class="api-list">
+
+    <form [formGroup]="todoForm">
+        <div style="display: inline;">
+            <div class="search-input-group">
+                <!-- <label for="search">Search...</label> -->
+                <input 
+                    id="search" 
+                    type="text" 
+                    placeholder="Search..."
+                    (input)="onSearchInputApiList($event)"
+                >
+            </div>
+            <div class="add-input-group">
+                <!-- <label for="add">Add</label> -->
+                <input 
+                    id="add" 
+                    type="text" 
+                    placeholder="add new todo task"
+                    class="form-control"
+                    formControlName="task"
+                >
+            </div>
+            <div class="priority">
+                <div *ngIf="todoForm.get('priority')?.invalid && todoForm.get('priority')?.touched" style="font-size: 6px;">
+                    Please enter a valid number.
+                  </div>
+                <input 
+                    type="text"
+                    placeholder="Priority"
+                    class="form-control"
+                    formControlName="priority"
+                >
+            </div>
+            <div class="add-button">
+                <button class="add-todo-button" (click)="addTodo()">Add</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="api-todo-list">
+        <ng-container *ngIf="todoApiList.length; else noDataFound">
+            <app-todo-item 
+                *ngFor="let todo of filteredTodoApiList" 
+                [item]="todo"
+                (click)="removeTodoOnAPI(todo.id)"
+                >
+            </app-todo-item>
+        </ng-container>
+    </div>
+    <div>
+        <span class="note">
+            <p>Click on the item to remove it.</p>
+        </span>
+    </div>
+
+</div>

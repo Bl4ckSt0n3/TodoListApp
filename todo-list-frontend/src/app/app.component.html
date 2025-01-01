@@ -33,7 +33,7 @@
 <hr>
 
 <div class="api-title">
-    <h2>Api List</h2>
+    <h2>List of TODOs - API</h2>
 </div>
 
 
@@ -51,19 +51,21 @@
                 >
             </div>
             <div class="add-input-group">
-                <!-- <label for="add">Add</label> -->
+                <div *ngIf="todoForm.get('task')?.invalid && todoForm.get('task')?.touched" style="font-size: 10px; color: red;">
+                    Required field cannot be empty!
+                </div>
                 <input 
                     id="add" 
                     type="text" 
-                    placeholder="add new todo task"
+                    placeholder="Todo task"
                     class="form-control"
                     formControlName="task"
                 >
             </div>
             <div class="priority">
-                <div *ngIf="todoForm.get('priority')?.invalid && todoForm.get('priority')?.touched" style="font-size: 6px;">
+                <div *ngIf="todoForm.get('priority')?.invalid && todoForm.get('priority')?.touched" style="font-size: 10px; color: red;">
                     Please enter a valid number.
-                  </div>
+                </div>
                 <input 
                     type="text"
                     placeholder="Priority"
@@ -92,5 +94,6 @@
             <p>Click on the item to remove it.</p>
         </span>
     </div>
+    <div *ngIf="showLoaderApi" class="loader-api"></div>
 
 </div>

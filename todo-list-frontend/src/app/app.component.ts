@@ -15,6 +15,7 @@ export class AppComponent {
   readonly todos$: Observable<Todo[]>;
   filteredData: Todo[] = [];
   showLoader: boolean = false;
+  showLoaderApi: boolean = false;
 
   todoApiList: Todo[] = [];
   filteredTodoApiList: Todo[] = [];
@@ -82,8 +83,12 @@ export class AppComponent {
    * API Requests
    */
   getTodoListFromAPI() {
+    this.showLoaderApi = true;
     this.todoService
     .getTodoList()
+    .pipe (
+      finalize(() => { this.showLoaderApi = false })
+    )
     .subscribe({
       next: (value) => {
           this.filteredTodoApiList = this.todoApiList = value.Data;
@@ -111,6 +116,7 @@ export class AppComponent {
         .pipe(
           finalize(() => {
             this.getTodoListFromAPI();
+            this.todoForm.reset();
           })
         )
         .subscribe({
@@ -118,7 +124,7 @@ export class AppComponent {
               alert(value.Data);
           },
           error: (err) => {
-              alert(err.Message);
+              alert('Error');
           },
         })
   }
@@ -135,7 +141,7 @@ export class AppComponent {
               alert(value.Data);
           },
           error: (err) => {
-              alert('Hata');
+              alert('Error');
           },
         })
   }
@@ -153,6 +159,7 @@ export class AppComponent {
   public get fControls() {
     return this.todoForm.controls;
   }
+
   constructor(
     private readonly todoService: TodoService,
     private readonly fb: FormBuilder

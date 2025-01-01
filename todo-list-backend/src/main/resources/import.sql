@@ -1,12 +1,3 @@
-
-
--- CREATE TABLE todo (
---     id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, 
---     task VARCHAR(100) NOT NULL, 
---     priority INTEGER
--- );
-
-
 INSERT INTO todo (id, task, priority) VALUES (1, 'Implement loading - frontend only', 1);
 INSERT INTO todo (id, task, priority) VALUES (2, 'Implement search - frontend only', 2);
 INSERT INTO todo (id, task, priority) VALUES (3, 'Implement delete on click - frontend only', 1);

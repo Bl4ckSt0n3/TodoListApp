@@ -28,12 +28,14 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    // you can reach the mock todo list from todoService using this endpoint 
     // @CrossOrigin(origins = "https://localhost:4200")
     @GetMapping("/getAll")
     public ArrayList<Todo> getAll() {
         return todoService.getAllTodo();
     }
 
+    // you can get certain todo item by id from todoService using this endpoint 
     // @CrossOrigin(origins = "https://localhost:4200")
     @GetMapping("/getById")
     public ResponseModel<Todo> getById(@RequestParam Integer id) {

@@ -28,11 +28,11 @@ public class TodoService {
         Todo todo3 = new Todo(3, "Implement delete on click - frontend only", 1);
         Todo todo4 = new Todo(4, "Replace mock service by integrating backend",3);
 
-        todoList.addAll(Arrays.asList(todo1, todo2, todo3, todo4));
-        // todoRepo.saveAll(todoList);
+        todoList.addAll(Arrays.asList(todo1, todo2, todo3, todo4)); // mock todo list
     }
 
 
+    // obsolete method
     public ArrayList<Todo> getAllTodo() {
         return (ArrayList<Todo>) todoList;
     }
@@ -56,7 +56,7 @@ public class TodoService {
 
             List<Todo> todoList = todoRepo.findAll();
             Todo todoModel = new Todo();
-            todoModel.setId(todoList.size());
+            todoModel.setId(todoList.size() + 1);
             todoModel.setPriority(todo.getPriority());
             todoModel.setTask(todo.getTask());
 
